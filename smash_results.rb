@@ -1,0 +1,1 @@
+SmashResults = Struct.new(:new_weight_set, :smaller_weight_set, :store)
