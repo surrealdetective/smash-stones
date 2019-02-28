@@ -1,7 +1,10 @@
 require 'forwardable'
+require './binary_search_plus.rb'
 
 class StoneSmasher
   extend Forwardable
+  include BinarySearchPlus
+
   attr_accessor :larger_ws, :second_lws
   def_delegators :weight_store_tracker, :store, :smashed_store, :largest_weight, :second_largest_weight
   attr_reader :weight_store_tracker
@@ -56,14 +59,10 @@ class StoneSmasher
   end
 
   def update_new_ws!(new_ws)
-    # puts "Update new ws! PRE UPDATE store: #{store} | smashed_store: #{smashed_store} for new_ws: #{new_ws}"
-
-    smashed_store.unshift(new_ws.weight) if !(smashed_store.include?(new_ws.weight) || has_weight?(new_ws))
-    smashed_store.sort
+    conditional_binary_search_insert_and_sort(smashed_store, new_ws.weight) if !has_weight?(new_ws)
 
     store[new_ws.to_s] += new_ws.num
     remove_weightset_from_store_if_nil!(new_ws)
-    # puts "Update new ws! POST UPDATE store: #{store} | smashed_store: #{smashed_store}"
   end
 
   def remove_weightset_from_store_if_nil!(weightset)

@@ -15,7 +15,6 @@ class WeightStoreTracker
     self.second_largest_weight = find_second_largest_weight
   end
 
-  private
   # Store Counting
   def smashed_store_has_largest?
     largest_weight == smashed_store.last
@@ -24,6 +23,8 @@ class WeightStoreTracker
   def has_weight?(weight)
     store[weight.to_s] > 0
   end    
+
+  private
 
   # Init Objects
   def _store_as_hash(weights)

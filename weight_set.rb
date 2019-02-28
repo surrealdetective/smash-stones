@@ -23,7 +23,7 @@ class WeightSet
   end
 
   def smash(other)
-    raise "Weight Set #{self} must be larger than other #{other}" if self.weight < other.weight
+    # raise "Weight Set #{self} must be larger than other #{other}" if self.weight < other.weight
     new_weight = (self.weight - other.weight).abs
     [ 
       WeightSet.new(new_weight, new_weight == 0 ? 0 : 1 ),
