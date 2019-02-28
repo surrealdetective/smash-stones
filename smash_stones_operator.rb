@@ -51,3 +51,25 @@ class SmashStonesOperator
     weight_store_tracker.update_store_and_weights!
   end
 end
+
+describe 'StoneSmashOperator#has_stones_to_smash?' do
+  it 'is false with 0 stones' do
+    operator = SmashStonesOperator.new([])
+    expect(operator.has_stones_to_smash?).to eq false
+  end 
+
+  it 'is false with 1 stone' do
+    operator = SmashStonesOperator.new([1])
+    expect(operator.has_stones_to_smash?).to eq false
+  end 
+
+  it 'is true with 2 diff weighted stones' do
+    operator = SmashStonesOperator.new([1, 2])
+    expect(operator.has_stones_to_smash?).to eq true
+  end
+
+  it 'is true with 2 same-weighted stones' do
+    operator = SmashStonesOperator.new([1, 1])
+    expect(operator.has_stones_to_smash?).to eq true
+  end  
+end

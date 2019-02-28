@@ -45,8 +45,7 @@ class StoneSmasher
   end
 
   def smash_larger_weight_set_w_one_count_from_other_weight_set!(larger_ws, other_ws)
-    reduced_to_one_ws    = larger_ws.smash_self
-    new_ws, new_other_ws = reduced_to_one_ws.smash(other_ws)
+    new_ws, new_other_ws = larger_ws.smash(other_ws)
 
     remove_largest_weightset_from_store!(larger_ws)
     update_other_ws!(new_other_ws)

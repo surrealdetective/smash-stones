@@ -81,3 +81,35 @@ class WeightStoreTracker
   end
 
 end
+
+describe 'WeightStoreTracker' do
+  it 'initializes and finds largest weights with empty array' do
+    wst = WeightStoreTracker.new(weights: [])
+    expect(wst.largest_weight).to eq 0
+    expect(wst.second_largest_weight).to eq 0
+  end
+
+  it 'initializes and finds largest weights with 1 weight' do
+    wst = WeightStoreTracker.new(weights: [10])
+    expect(wst.largest_weight).to eq 10
+    expect(wst.second_largest_weight).to eq 0
+  end  
+
+  it 'initializes and finds largest weights with 2 identical weight' do
+    wst = WeightStoreTracker.new(weights: [10, 10])
+    expect(wst.largest_weight).to eq 10
+    expect(wst.second_largest_weight).to eq 0
+  end  
+
+  it 'initializes and finds largest weights with 2 diff weights' do
+    wst = WeightStoreTracker.new(weights: [10, 9])
+    expect(wst.largest_weight).to eq 10
+    expect(wst.second_largest_weight).to eq 9
+  end  
+
+  it 'initializes and finds largest weights with 2 identical largest weights and other weights' do
+    wst = WeightStoreTracker.new(weights: [10, 10, 9, 8])
+    expect(wst.largest_weight).to eq 10
+    expect(wst.second_largest_weight).to eq 9
+  end    
+end
